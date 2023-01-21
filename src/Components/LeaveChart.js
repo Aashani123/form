@@ -1,21 +1,50 @@
-import React from 'react'
-import {Line} from 'react-chartjs-2';
+import React, { useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 
-function LeaveChart() {
-  const data={
-    labels:['annual','casual','medical'],
-    datasets:[
+function LeaveChart({annualLeaves,casualLeaves,medicalLeaves, annualLeavesTaken, casualLeavesTaken, medicalLeavesTaken}) {
+  const [data, setData] = useState({
+    labels: ['Annual', 'Casual', 'Medical'],
+    datasets: [
       {
-        label:'Number of leave days',
-        data:[14,7,7]
+        label: 'Leaves Given',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [annualLeaves, casualLeaves, medicalLeaves]
+      },
+      {
+        label: 'Leaves Taken',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(54, 162, 235, 0.4)',
+        hoverBorderColor: 'rgba(54, 162, 235, 1)',
+        data: [annualLeavesTaken, casualLeavesTaken, medicalLeavesTaken]
       }
     ]
+  });
+
+  const options = {
+    type: 'horizontalBar',
+    scales: {
+      xAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   }
+
   return (
     <div>
-      hi
+      <Bar
+        data={data}
+        options={options}
+      />
     </div>
-  )
+  );
 }
 
 export default LeaveChart;
