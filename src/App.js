@@ -9,7 +9,7 @@ function App() {
      <header>
       <nav>
         <NavLink to="/">Leave Request</NavLink>
-        <NavLink to="LeaveChart">Remaining Leaves</NavLink>
+        <NavLink to="/LeaveChart">Remaining Leaves</NavLink>
       </nav>
      </header>
      <main>

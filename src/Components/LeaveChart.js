@@ -1,30 +1,21 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React from 'react'
+import {Line} from 'react-chartjs-2';
 
-class LeaveChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      remainingLeaves: props.remainingLeaves,
-    };
+function LeaveChart() {
+  const data={
+    labels:['annual','casual','medical'],
+    datasets:[
+      {
+        label:'Number of leave days',
+        data:[14,7,7]
+      }
+    ]
   }
-
-  render() {
-    const data = {
-      labels: ['Remaining Leaves'],
-      datasets: [
-        {
-          label: 'Leaves',
-          data: [this.state.remainingLeaves],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-      ],
-    };
-
-    return <Bar data={data} />;
-  }
+  return (
+    <div>
+      hi
+    </div>
+  )
 }
 
 export default LeaveChart;
