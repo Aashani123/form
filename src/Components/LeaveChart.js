@@ -1,30 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-class LeaveChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      remainingLeaves: props.remainingLeaves,
-    };
+function LeaveChart({annualLeaves,casualLeaves,medicalLeaves, annualLeavesTaken, casualLeavesTaken, medicalLeavesTaken}) {
+  const [data, setData] = useState({
+    labels: ['Annual', 'Casual', 'Medical'],
+    datasets: [
+      {
+        label: 'Leaves Given',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [annualLeaves, casualLeaves, medicalLeaves]
+      },
+      {
+        label: 'Leaves Taken',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(54, 162, 235, 0.4)',
+        hoverBorderColor: 'rgba(54, 162, 235, 1)',
+        data: [annualLeavesTaken, casualLeavesTaken, medicalLeavesTaken]
+      }
+    ]
+  });
+
+  const options = {
+    type: 'horizontalBar',
+    scales: {
+      xAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   }
 
-  render() {
-    const data = {
-      labels: ['Remaining Leaves'],
-      datasets: [
-        {
-          label: 'Leaves',
-          data: [this.state.remainingLeaves],
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1,
-        },
-      ],
-    };
-
-    return <Bar data={data} />;
-  }
+  return (
+    <div>
+      <Bar
+        data={data}
+        options={options}
+      />
+    </div>
+  );
 }
 
 export default LeaveChart;
